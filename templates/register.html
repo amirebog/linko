@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ثبت‌نام — Linko</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/static/images/linko-icon.png">
+  <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">رفتن به محتوا</a>
+  <div class="auth-shell">
+    <main id="main" class="auth-card">
+      <a class="brand" href="/">
+        <img class="brand-logo" src="/static/images/linko-logo-light.png" alt="Linko" width="150" height="46">
+      </a>
+      <h1 data-i18n="registerTitle">ساخت حساب</h1>
+      <p class="muted">صفحهٔ عمومی شما هنگام ثبت‌نام به‌صورت پیش‌نویس ساخته می‌شود.</p>
+      <form id="register-form" method="post" action="/register" novalidate>
+        <label for="username" data-i18n="username">نام کاربری</label>
+        <input id="username" name="username" autocomplete="username" minlength="3" maxlength="24" required>
+        <label for="email" data-i18n="email">ایمیل</label>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+        <label for="password" data-i18n="password">رمز عبور</label>
+        <input id="password" name="password" type="password" autocomplete="new-password" minlength="10" maxlength="128" required>
+        <label for="password_confirmation" data-i18n="confirm">تکرار رمز عبور</label>
+        <input id="password_confirmation" name="password_confirmation" type="password" autocomplete="new-password" required>
+        <p class="form-error" role="alert"></p>
+        <button class="btn btn-primary" type="submit" data-i18n="submitRegister">ایجاد حساب</button>
+      </form>
+      <p class="muted"><a href="/login" data-i18n="haveAccount">حساب دارید؟ وارد شوید</a></p>
+      <p><button type="button" class="lang-toggle" data-i18n="lang">EN</button></p>
+    </main>
+  </div>
+  <script src="/static/js/i18n.js"></script>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/auth.js"></script>
+</body>
+</html>

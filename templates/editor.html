@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ویرایشگر — Linko</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/static/images/linko-icon.png">
+  <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body class="workspace-page editor-page">
+  <a class="skip-link" href="#main">رفتن به محتوا</a>
+  <div class="app-loader" id="app-loader" role="status" aria-live="polite" aria-label="در حال بارگذاری">
+    <span class="loader-logo-wrap"><img src="/static/images/linko-logo-light.png" alt="" width="150" height="46"></span>
+    <span class="loader-label">در حال بارگذاری ویرایشگر…</span>
+  </div>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="ناوبری فضای کاری">
+      <a class="brand" href="/">
+        <img class="brand-logo" src="/static/images/linko-logo-light.png" alt="Linko" width="138" height="42">
+      </a>
+      <div class="sidebar-label" data-i18n="workspace">فضای کاری</div>
+      <a href="/dashboard"><span class="nav-icon" aria-hidden="true">⌂</span><span data-i18n="overview">نمای کلی</span></a>
+      <a class="active" href="/editor"><span class="nav-icon" aria-hidden="true">▤</span><span data-i18n="editor">ویرایشگر</span></a>
+      <a href="/preview" target="_blank" rel="noopener"><span class="nav-icon" aria-hidden="true">↗</span><span data-i18n="preview">پیش‌نمایش</span></a>
+      <div class="sidebar-spacer"></div>
+      <button type="button" class="linkish" data-action="signout"><span class="nav-icon" aria-hidden="true">⇥</span><span data-i18n="signOut">خروج</span></button>
+      <button type="button" class="lang-toggle" data-i18n="lang">EN</button>
+      <div class="sidebar-footer">LINKO · CREATOR SPACE</div>
+    </aside>
+
+    <div class="workspace-content">
+      <div class="top-mobile">
+        <a class="brand" href="/" aria-label="Linko"><img class="brand-logo" src="/static/images/linko-logo-light.png" alt="Linko" width="110" height="34"></a>
+        <button class="btn btn-ghost" type="button" data-action="toggle-sidebar" aria-controls="sidebar" aria-expanded="false" data-i18n="menu">منو</button>
+      </div>
+      <main id="main" class="app-main editor-main" aria-busy="true">
+        <header class="page-heading editor-heading">
+          <div>
+            <p class="eyebrow" data-i18n="editorEyebrow">سازندهٔ صفحه</p>
+            <h1 data-i18n="editorTitle">محتوای صفحه‌تان را بچینید</h1>
+            <p class="muted" data-i18n="editorLead">بخش‌ها را اضافه کنید، محتوایشان را ویرایش و ترتیب نمایش را تنظیم کنید.</p>
+          </div>
+          <div class="heading-actions">
+            <a class="btn btn-ghost" href="/dashboard"><span aria-hidden="true">⚙</span><span data-i18n="pageAppearance">ظاهر صفحه</span></a>
+            <a class="btn btn-primary" href="/preview" target="_blank" rel="noopener"><span aria-hidden="true">↗</span><span data-i18n="preview">پیش‌نمایش</span></a>
+          </div>
+        </header>
+
+        <section class="editor-workspace" aria-label="ویرایش بلوک‌های صفحه">
+          <div class="editor-canvas">
+            <div class="editor-toolbar card">
+              <div class="editor-toolbar-copy">
+                <span class="section-icon" aria-hidden="true">＋</span>
+                <div><h2 data-i18n="addSectionTitle">افزودن بخش</h2><p class="muted" data-i18n="addSectionLead">نوع بخش را انتخاب کنید و به صفحه اضافه کنید.</p></div>
+              </div>
+              <div class="add-block-controls">
+                <label class="sr-only" for="block-type">نوع بلوک</label>
+                <select id="block-type">
+                  <option value="heading">تیتر</option>
+                  <option value="paragraph">متن</option>
+                  <option value="link">پیوند</option>
+                  <option value="social_links">شبکه‌های اجتماعی</option>
+                  <option value="divider">جداکننده</option>
+                  <option value="image">تصویر</option>
+                  <option value="cta">دکمه دعوت</option>
+                  <option value="project_card">کارت پروژه</option>
+                  <option value="skills">مهارت‌ها</option>
+                  <option value="contact">اطلاعات تماس</option>
+                </select>
+                <button class="btn btn-primary" type="button" id="add-block"><span aria-hidden="true">＋</span><span data-i18n="addBlock">افزودن بلوک</span></button>
+              </div>
+            </div>
+
+            <div class="blocks-heading">
+              <div><p class="eyebrow" data-i18n="pageSections">محتوای صفحه</p><h2 data-i18n="yourBlocks">بخش‌های شما</h2></div>
+              <span class="muted editor-order-hint"><span aria-hidden="true">⠿</span><span data-i18n="reorderHint">برای تغییر ترتیب، بلوک‌ها را بکشید.</span></span>
+            </div>
+            <div id="block-list" class="block-list" aria-live="polite"></div>
+          </div>
+
+          <aside class="editor-aside">
+            <section class="card editor-tip-card">
+              <span class="tip-mark" aria-hidden="true">✳</span>
+              <p class="eyebrow" data-i18n="quickTip">نکتهٔ سریع</p>
+              <h2 data-i18n="editorTipTitle">با یک پیوند شروع کنید</h2>
+              <p class="muted" data-i18n="editorTipBody">پیوندهای مهمتان را در دسترس بگذارید؛ بعداً می‌توانید نمونه‌کار، معرفی و راه‌های ارتباطی را اضافه کنید.</p>
+              <button class="btn btn-ghost tip-add-link" type="button" data-add-type="link" data-i18n="addLink">افزودن پیوند</button>
+            </section>
+            <section class="card editor-preview-card">
+              <div class="editor-preview-mark"><span aria-hidden="true">↗</span></div>
+              <p class="eyebrow" data-i18n="previewAnytime">هر زمان خواستید</p>
+              <h2 data-i18n="previewTitle">پیش‌نمایش صفحه</h2>
+              <p class="muted" data-i18n="previewBody">چیدمان نهایی را در نمای صفحهٔ خودتان بررسی کنید.</p>
+              <a class="text-link" href="/preview" target="_blank" rel="noopener"><span data-i18n="openPreview">باز کردن پیش‌نمایش</span><span aria-hidden="true">←</span></a>
+            </section>
+          </aside>
+        </section>
+        <footer class="workspace-footer"><span>LINKO</span><span data-i18n="workspaceFooter">فضای شما، با سلیقهٔ شما.</span></footer>
+      </main>
+    </div>
+  </div>
+  <script src="/static/js/i18n.js"></script>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/editor.js"></script>
+</body>
+</html>

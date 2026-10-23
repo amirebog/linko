@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>داشبورد — Linko</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/static/images/linko-icon.png">
+  <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body class="workspace-page">
+  <a class="skip-link" href="#main">رفتن به محتوا</a>
+  <div class="app-loader" id="app-loader" role="status" aria-live="polite" aria-label="در حال بارگذاری">
+    <span class="loader-logo-wrap"><img src="/static/images/linko-logo-light.png" alt="" width="150" height="46"></span>
+    <span class="loader-label">در حال بارگذاری فضای کاری…</span>
+  </div>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="ناوبری فضای کاری">
+      <a class="brand" href="/">
+        <img class="brand-logo" src="/static/images/linko-logo-light.png" alt="Linko" width="138" height="42">
+      </a>
+      <div class="sidebar-label" data-i18n="workspace">فضای کاری</div>
+      <a class="active" href="/dashboard"><span class="nav-icon" aria-hidden="true">⌂</span><span data-i18n="overview">نمای کلی</span></a>
+      <a href="/editor"><span class="nav-icon" aria-hidden="true">▤</span><span data-i18n="editor">ویرایشگر</span></a>
+      <a href="#settings"><span class="nav-icon" aria-hidden="true">⚙</span><span data-i18n="settings">تنظیمات</span></a>
+      <a href="/preview" target="_blank" rel="noopener"><span class="nav-icon" aria-hidden="true">↗</span><span data-i18n="preview">پیش‌نمایش</span></a>
+      <a href="/admin" id="admin-link" hidden><span class="nav-icon" aria-hidden="true">⌘</span><span data-i18n="admin">مدیریت</span></a>
+      <div class="sidebar-spacer"></div>
+      <button type="button" class="linkish" data-action="signout"><span class="nav-icon" aria-hidden="true">⇥</span><span data-i18n="signOut">خروج</span></button>
+      <button type="button" class="lang-toggle" data-i18n="lang">EN</button>
+      <div class="sidebar-footer">LINKO · CREATOR SPACE</div>
+    </aside>
+
+    <div class="workspace-content">
+      <div class="top-mobile">
+        <a class="brand" href="/" aria-label="Linko"><img class="brand-logo" src="/static/images/linko-logo-light.png" alt="Linko" width="110" height="34"></a>
+        <button class="btn btn-ghost" type="button" data-action="toggle-sidebar" aria-controls="sidebar" aria-expanded="false" data-i18n="menu">منو</button>
+      </div>
+      <main id="main" class="app-main dashboard-main" aria-busy="true">
+        <header class="page-heading dashboard-heading">
+          <div>
+            <p class="eyebrow" id="welcome-line">فضای کاری</p>
+            <h1 id="welcome">داشبورد</h1>
+            <p class="muted" data-i18n="dashboardLead">نمای کلی صفحه و تنظیمات اصلی حساب شما.</p>
+          </div>
+          <div class="heading-actions">
+            <a class="btn btn-ghost" href="/editor"><span aria-hidden="true">▤</span><span data-i18n="manageLinks">مدیریت محتوا</span></a>
+            <a class="btn btn-primary" id="live-page-link" href="/preview" target="_blank" rel="noopener"><span aria-hidden="true">↗</span><span data-i18n="viewPage">مشاهده صفحه</span></a>
+          </div>
+        </header>
+
+        <section class="profile-overview card" aria-labelledby="profile-overview-title">
+          <div class="profile-overview-main">
+            <div class="profile-avatar" aria-hidden="true"><span id="profile-initial">L</span></div>
+            <div class="profile-overview-copy">
+              <p class="eyebrow" data-i18n="yourPage">صفحهٔ شما</p>
+              <h2 id="profile-overview-title">—</h2>
+              <p class="muted" id="profile-bio">معرفی کوتاه شما اینجا نمایش داده می‌شود.</p>
+              <a class="public-url" id="public-url-link" href="/preview" target="_blank" rel="noopener">
+                <span aria-hidden="true">↗</span><span id="public-url">—</span>
+              </a>
+            </div>
+          </div>
+          <div class="profile-overview-actions">
+            <span class="status-pill" id="profile-status"><span class="status-dot"></span><span>…</span></span>
+            <button class="btn btn-ghost" type="button" id="btn-copy"><span aria-hidden="true">⧉</span><span data-i18n="copyUrl">کپی آدرس</span></button>
+          </div>
+        </section>
+
+        <section class="stats dashboard-stats" id="stats" aria-label="آمار صفحه"></section>
+        <p class="empty-hint" id="links-empty" hidden data-i18n="linksEmpty">هنوز پیوندی ندارید. از ویرایشگر اولین پیوندتان را اضافه کنید.</p>
+
+        <section class="dashboard-section" aria-labelledby="page-form-title">
+          <div class="section-title-row">
+            <div>
+              <p class="eyebrow" data-i18n="customizeEyebrow">ظاهر و اطلاعات</p>
+              <h2 id="page-form-title" data-i18n="pageSettingsTitle">تنظیمات صفحه</h2>
+            </div>
+            <a class="text-link" href="/editor"><span data-i18n="openEditor">رفتن به ویرایشگر</span><span aria-hidden="true">←</span></a>
+          </div>
+          <form id="page-form" class="card settings-card">
+            <div class="form-section-heading">
+              <span class="section-icon" aria-hidden="true">✳</span>
+              <div><h3 data-i18n="profileDetails">اطلاعات صفحه</h3><p class="muted" data-i18n="profileDetailsLead">اطلاعات اصلی که بازدیدکنندگان در صفحهٔ شما می‌بینند.</p></div>
+            </div>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="display_name">نام نمایشی</label>
+                <input id="display_name" name="display_name" maxlength="80" required>
+              </div>
+              <div class="form-field form-field-wide">
+                <label for="bio">معرفی</label>
+                <textarea id="bio" name="bio" maxlength="500" rows="3"></textarea>
+              </div>
+              <div class="form-field">
+                <label for="avatar_url">آدرس تصویر نمایه</label>
+                <input id="avatar_url" name="avatar_url" type="url" placeholder="https://">
+              </div>
+              <div class="form-field">
+                <label for="cover_url">آدرس تصویر جلد</label>
+                <input id="cover_url" name="cover_url" type="url" placeholder="https://">
+              </div>
+            </div>
+
+            <div class="form-section-heading appearance-heading">
+              <span class="section-icon" aria-hidden="true">◐</span>
+              <div><h3 data-i18n="appearance">ظاهر صفحه</h3><p class="muted" data-i18n="appearanceLead">تم و رنگی را انتخاب کنید که با کار شما هماهنگ است.</p></div>
+            </div>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="theme">تم</label>
+                <select id="theme" name="theme">
+                  <option value="minimal">Minimal</option>
+                  <option value="developer">Developer</option>
+                  <option value="creator">Creator</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="accent_color">رنگ تأکیدی</label>
+                <input id="accent_color" name="accent_color" type="color" value="#3EC6FF">
+              </div>
+            </div>
+
+            <details class="advanced-settings">
+              <summary data-i18n="seoSettings">تنظیمات موتور جست‌وجو</summary>
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="seo_title">عنوان سئو</label>
+                  <input id="seo_title" name="seo_title" maxlength="80">
+                </div>
+                <div class="form-field form-field-wide">
+                  <label for="seo_description">توضیح سئو</label>
+                  <textarea id="seo_description" name="seo_description" maxlength="200" rows="3"></textarea>
+                </div>
+              </div>
+            </details>
+
+            <p class="form-error" role="alert"></p>
+            <div class="form-footer">
+              <div class="form-footer-actions">
+                <button class="btn btn-primary" type="submit"><span aria-hidden="true">✓</span><span data-i18n="save">ذخیره</span></button>
+                <button class="btn btn-ghost" type="button" id="btn-publish"><span aria-hidden="true">↑</span><span data-i18n="publish">انتشار</span></button>
+                <button class="btn btn-ghost" type="button" id="btn-unpublish"><span aria-hidden="true">↶</span><span data-i18n="unpublish">لغو انتشار</span></button>
+              </div>
+              <span class="muted form-footnote" data-i18n="saveHint">تغییرات پس از ذخیره در صفحهٔ شما اعمال می‌شوند.</span>
+            </div>
+          </form>
+        </section>
+
+        <section class="dashboard-section account-section" id="settings" aria-labelledby="account-title">
+          <div class="section-title-row">
+            <div><p class="eyebrow" data-i18n="accountEyebrow">حساب کاربری</p><h2 id="account-title" data-i18n="accountSettings">تنظیمات حساب</h2></div>
+            <p class="muted" id="account-meta"></p>
+          </div>
+          <div class="account-grid">
+            <form id="email-form" class="card account-card">
+              <div class="form-section-heading"><span class="section-icon" aria-hidden="true">@</span><div><h3 data-i18n="changeEmail">تغییر ایمیل</h3><p class="muted" data-i18n="emailHint">برای تأیید، رمز فعلی خود را وارد کنید.</p></div></div>
+              <label for="new_email">ایمیل جدید</label>
+              <input id="new_email" name="email" type="email" required>
+              <label for="email_password">رمز فعلی</label>
+              <input id="email_password" name="password" type="password" required autocomplete="current-password">
+              <button class="btn btn-ghost account-submit" type="submit" data-i18n="updateEmail">به‌روزرسانی ایمیل</button>
+            </form>
+            <form id="password-form" class="card account-card">
+              <div class="form-section-heading"><span class="section-icon" aria-hidden="true">⌑</span><div><h3 data-i18n="changePassword">تغییر رمز عبور</h3><p class="muted" data-i18n="passwordHint">رمز جدید باید دست‌کم ۱۰ نویسه داشته باشد.</p></div></div>
+              <label for="current_password">رمز فعلی</label>
+              <input id="current_password" name="current_password" type="password" required autocomplete="current-password">
+              <label for="new_password">رمز جدید</label>
+              <input id="new_password" name="new_password" type="password" minlength="10" required autocomplete="new-password">
+              <label for="new_password_confirmation">تکرار رمز جدید</label>
+              <input id="new_password_confirmation" name="new_password_confirmation" type="password" required autocomplete="new-password">
+              <button class="btn btn-ghost account-submit" type="submit" data-i18n="updatePassword">تغییر رمز</button>
+            </form>
+          </div>
+        </section>
+        <footer class="workspace-footer"><span>LINKO</span><span data-i18n="workspaceFooter">فضای شما، با سلیقهٔ شما.</span></footer>
+      </main>
+    </div>
+  </div>
+  <script src="/static/js/i18n.js"></script>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

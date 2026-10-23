@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ورود — Linko</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/static/images/linko-icon.png">
+  <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">رفتن به محتوا</a>
+  <div class="auth-shell">
+    <main id="main" class="auth-card">
+      <a class="brand" href="/">
+        <img class="brand-logo" src="/static/images/linko-logo-light.png" alt="Linko" width="150" height="46">
+      </a>
+      <h1 data-i18n="loginTitle">ورود به لینکو</h1>
+      <p class="muted">با نام کاربری یا ایمیل وارد شوید.</p>
+      <form id="login-form" method="post" action="/login" novalidate>
+        <label for="identifier" data-i18n="identifier">نام کاربری یا ایمیل</label>
+        <input id="identifier" name="identifier" autocomplete="username" required>
+        <label for="password" data-i18n="password">رمز عبور</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <p class="form-error" role="alert"></p>
+        <button class="btn btn-primary" type="submit" data-i18n="submitLogin">ورود</button>
+      </form>
+      <p class="muted"><a href="/register" data-i18n="noAccount">حساب ندارید؟ ثبت‌نام کنید</a></p>
+      <p><button type="button" class="lang-toggle" data-i18n="lang">EN</button></p>
+    </main>
+  </div>
+  <script src="/static/js/i18n.js"></script>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/auth.js"></script>
+</body>
+</html>

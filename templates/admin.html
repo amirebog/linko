@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>مدیریت — Linko</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/static/images/linko-icon.png">
+  <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">رفتن به محتوا</a>
+  <div class="app-loader" id="app-loader" role="status" aria-live="polite" aria-label="در حال بارگذاری">
+    <span class="loader-logo-wrap"><img src="/static/images/linko-logo-light.png" alt="" width="150" height="46"></span>
+    <span class="loader-label">در حال بارگذاری پنل مدیریت…</span>
+  </div>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="Linko"><img class="brand-logo" src="/static/images/linko-logo-light.png" alt="Linko" width="138" height="42"></a>
+      <a href="/dashboard">داشبورد</a>
+      <a class="active" href="/admin">مدیریت</a>
+      <button type="button" class="linkish" data-action="signout">خروج</button>
+    </aside>
+    <main id="main" class="app-main" aria-busy="true">
+      <h1>پنل مدیریت</h1>
+      <p class="muted">فقط نقش admin روی سرور به این بخش دسترسی دارد.</p>
+      <div class="stats" id="stats"></div>
+      <section class="card" style="margin-top:1.5rem">
+        <h2>کاربران</h2>
+        <form id="search-form" class="hero-actions">
+          <input name="q" placeholder="جستجوی نام کاربری یا ایمیل" aria-label="جستجو">
+          <button class="btn btn-ghost" type="submit">جستجو</button>
+        </form>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>نام کاربری</th>
+                <th>ایمیل</th>
+                <th>نقش</th>
+                <th>وضعیت حساب</th>
+                <th>صفحه</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="users"></tbody>
+          </table>
+        </div>
+        <div class="hero-actions" id="pager"></div>
+      </section>
+      <section class="card" style="margin-top:1.5rem">
+        <h2>گزارش اقدامات</h2>
+        <ul id="audit" class="audit-list"></ul>
+      </section>
+    </main>
+  </div>
+  <script src="/static/js/i18n.js"></script>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/admin.js"></script>
+</body>
+</html>
