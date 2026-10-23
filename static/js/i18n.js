@@ -49,6 +49,8 @@ const I18N = {
     email: "ایمیل",
     password: "رمز عبور",
     confirm: "تکرار رمز عبور",
+    showPassword: "نمایش رمز عبور",
+    hidePassword: "پنهان‌کردن رمز عبور",
     submitLogin: "ورود",
     submitRegister: "ایجاد حساب",
     haveAccount: "حساب دارید؟ وارد شوید",
@@ -169,6 +171,8 @@ const I18N = {
     email: "Email",
     password: "Password",
     confirm: "Confirm password",
+    showPassword: "Show password",
+    hidePassword: "Hide password",
     submitLogin: "Sign in",
     submitRegister: "Create account",
     haveAccount: "Have an account? Sign in",
@@ -253,6 +257,10 @@ function applyI18n() {
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
     if (dict[key]) el.textContent = dict[key];
+  });
+  document.querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-aria-label");
+    if (dict[key]) el.setAttribute("aria-label", dict[key]);
   });
 }
 

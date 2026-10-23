@@ -230,11 +230,27 @@ async fn authentication_forms_do_not_use_csp_blocked_inline_handlers() {
     assert!(register.contains("id=\"register-form\""));
     assert!(register.contains("method=\"post\""));
     assert!(!register.contains("onsubmit="));
+    assert_eq!(register.matches("data-password-toggle").count(), 2);
+    assert!(register.contains("/static/js/password-toggle.js"));
     assert!(login.contains("id=\"login-form\""));
     assert!(login.contains("method=\"post\""));
     assert!(!login.contains("onsubmit="));
+    assert_eq!(login.matches("data-password-toggle").count(), 1);
+    assert!(login.contains("/static/js/password-toggle.js"));
     assert!(auth_js.contains("addEventListener(\"submit\", onRegister)"));
     assert!(auth_js.contains("addEventListener(\"submit\", onLogin)"));
+
+    let (_, _, toggle_script) = app.get("/static/js/password-toggle.js").await;
+    assert!(toggle_script.contains("input.type = visible ? \"text\" : \"password\""));
+
+    assert_eq!(
+        app.register("password_toggle_user", "password-toggle@example.test")
+            .await,
+        StatusCode::OK
+    );
+    let (_, _, dashboard) = app.get("/dashboard").await;
+    assert_eq!(dashboard.matches("data-password-toggle").count(), 4);
+    assert!(dashboard.contains("/static/js/password-toggle.js"));
 }
 
 #[tokio::test]
